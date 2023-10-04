@@ -35,14 +35,9 @@ fi
 
 echo "**Add ID's to the config.json file**"
 
-jq  --arg variable1 $(grep -e 'uuid:' ids | awk '{print $2}') \
-  --arg variable2 $(grep -e 'Private key:' ids | awk '{print $3}') \
-  --arg variable3 $(grep -e 'shortID:' ids | awk '{print $2}') '
-  .inbounds[1].settings.clients[].id=$variable1
-  | .inbounds[1].streamSettings.realitySettings.privateKey=$variable2
-  | .inbounds[1].streamSettings.realitySettings.shortIds[0]=$variable3' \
-  config.json > temp.json
-#  | cat temp.json | sed 's/\\r//g' > config.json
+jq  --arg variable1 $(grep -e 'uuid:' ids | awk '{print $2}') --arg variable2 $(grep -e 'Private key:' ids | awk '{print $3}') --arg variable3 $(grep -e 'shortID:' ids | awk '{print $2}') \
+  '.inbounds[].settings.clients[].id=$variable1 | .inbounds[].streamSettings.realitySettings.privateKey=$variable2 | .inbounds[].streamSettings.realitySettings.shortIds[0]=$variable3' \
+  config.json > temp.json && cat temp.json | sed 's/\\r//g' > config.json
 
 if [ -f temp.json ]; then
   rm -f temp.json
