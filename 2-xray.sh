@@ -55,8 +55,10 @@ sleep 3;
 
 if [[ $(docker ps | grep xray-obfuscate-proxy | grep Up | wc -l) == 1 ]]; then
   echo "****!!!XRAY server running!!!****"
-  echo "**Save genarated keys and ids**"
+  echo "**SAVE GENERATED KEYS and IDS**"
+  echo "#######################################################################"
   cat $PWD/ids
+  echo "#######################################################################"
 else
   echo "ERROR: Server don't start! Check logs!"
   docker logs xray-obfuscate-proxy-1 && exit 1
