@@ -1,8 +1,8 @@
 #!/bin/sh
 
-echo "!!!Check software!!!"
+echo "Check software"
 
-echo "!Check GIT!"
+echo "Check GIT"
 if command -v git >/dev/null; then
   echo "GIT is used here"
 else
@@ -14,7 +14,7 @@ else
     yum install -y git-core;
 
     if command -v git >/dev/null; then
-       echo "GIT instaled with yum!"
+       echo "GIT instaled with yum"
     else
       echo "ERROR: Not instaled GIT" && exit 1
     fi
@@ -23,7 +23,7 @@ else
     apt-get update && apt-get install -y git-core;
 
     if command -v git >/dev/null; then
-       echo "GIT instaled with apt-get!"
+       echo "GIT instaled with apt-get"
     else
       echo "ERROR: Not instaled GIT" && exit 1
     fi
@@ -32,7 +32,7 @@ else
   fi
 fi
 
-echo "!Check DOCKER!"
+echo "Check DOCKER!"
 if command -v docker >/dev/null; then
   echo "DOCKER is used here"
 else
@@ -47,7 +47,7 @@ else
     systemctl enable docker && systemctl start docker;
 
     if command -v docker >/dev/null; then
-       echo "DOCKER instaled with yum!"
+       echo "DOCKER instaled with yum"
     else
       echo "ERROR: Not instaled DOCKER" && exit 1
     fi
@@ -65,7 +65,7 @@ else
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin;
     systemctl enable docker && systemctl start docker;
     if command -v docker >/dev/null; then
-       echo "DOCKER instaled with apt-get!"
+       echo "DOCKER instaled with apt-get"
     else
       echo "ERROR: Not instaled DOCKER" && exit 1
     fi
@@ -74,7 +74,7 @@ else
   fi
 fi
 
-echo "!Check JQ!"
+echo "Check JQ"
 if command -v jq >/dev/null; then
   echo "JQ is used here"
 else
@@ -86,7 +86,7 @@ else
     yum install -y epel-release && yum install -y jq;
 
     if command -v jq >/dev/null; then
-       echo "JQ instaled with yum!"
+       echo "JQ instaled with yum"
     else
       echo "ERROR: Not instaled JQ with yum" && exit 1
     fi
@@ -95,7 +95,7 @@ else
     apt-get update && apt-get install -y jq;
 
     if command -v jq >/dev/null; then
-       echo "JQ instaled with apt-get!"
+       echo "JQ instaled with apt-get"
     else
       echo "ERROR: Not instaled JQ with apt" && exit 1
     fi
@@ -104,9 +104,9 @@ else
   fi
 fi
 
-echo "!!!Check 443 port!!!"
+echo "Check 443 port"
 if [ $(ss -lptnu | grep 443 | wc -l) != 0 ]; then
   echo "ERROR: 443 port is used " && exit 1
 else
-  echo "443 port not used!"
+  echo "443 port not used"
 fi
