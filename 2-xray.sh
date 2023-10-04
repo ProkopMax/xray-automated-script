@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "!!!Install xray server!!!"
+echo "Install xray server"
 
 echo "Check XRay-obfuscate folder"
 if [ -d XRay-obfuscate ]; then
@@ -28,9 +28,9 @@ echo "**Generate keys**" \
 echo "**Generate short ID**" \
 && echo "shortID: $(openssl rand -hex 8)" >> $PWD/ids
 
-echo "!!!Check the config.json file!!!"
+echo "Check the config.json file!"
 if [ ! -s config.json ] || [ ! -f config.json ]; then
-  echo "ERROR: CONFIG.JSON is empty or not found. Chek this!" && exit 1
+  echo "ERROR: CONFIG.JSON is empty or not found. Chek this" && exit 1
 fi
 
 echo "**Add ID's to the config.json file**"
@@ -43,23 +43,23 @@ if [ -f temp.json ]; then
   rm -f temp.json
 fi
 
-echo "!!!Check updated config.json file!!!"
+echo "Check updated config.json file"
 if [ ! -s config.json ] || [ ! -f config.json ]; then
-  echo "ERROR: CONF.JSON is empty or not found. Chek this!" && exit 1
+  echo "ERROR: CONF.JSON is empty or not found. Chek this" && exit 1
 fi
 
-echo "!!!Run XRAY server!!!"
+echo "Run XRAY server"
 
 docker compose up -d;
 sleep 3;
 
 if [[ $(docker ps | grep xray-obfuscate-proxy | grep Up | wc -l) == 1 ]]; then
-  echo "****!!!XRAY server running!!!****"
+  echo "****XRAY server running****"
   echo "**SAVE GENERATED KEYS and IDS**"
   echo "#######################################################################"
   cat $PWD/ids
   echo "#######################################################################"
 else
-  echo "ERROR: Server don't start! Check logs!"
+  echo "ERROR: Server don't start! Check logs"
   docker logs xray-obfuscate-proxy-1 && exit 1
 fi
