@@ -6,4 +6,4 @@
 ### 2. Скрипт проверки/установки необходимых приложений и портов:
     sudo sh 1-prepare.sh
 ### 3. Скрипт запуска сервера в докер контейнере (пользователь должен состоять в группе docker):
-    sh 2-xray.sh
+    [[ " $(groups) " =~ ' docker '  || " $(groups) " == ' root ' ]] && sh 2-xray.sh || echo 'ERROR: Add a user to a docker group'
